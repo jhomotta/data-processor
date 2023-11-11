@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "1ae4df30-35dc-4afb-83c3-1275f1c39298",
+		"name": "NTTData",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11560454",
+		"_collection_link": "https://lively-resonance-280570.postman.co/workspace/Team-Workspace~6d6955c2-1d19-4746-8d86-9dda150afe51/collection/11560454-1ae4df30-35dc-4afb-83c3-1275f1c39298?action=share&source=collection_link&creator=11560454"
+	},
+	"item": [
+		{
+			"name": "CUSTUMER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentNumber\": \"23445324\",\n    \"documentType\": \"P\",\n    \"firstName\": \"Maria\",\n    \"middleName\": \"Jose\",\n    \"lastName\": \"Lopez\",\n    \"secondLastName\": \"Diaz\",\n    \"phoneNumber\": \"3209876543\",\n    \"address\": \"Avenida 45\",\n    \"cityOfResidence\": \"Medellín\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CUSTUMER by DN",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/api/customer?documentType=C&documentNumber=23445322",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "documentType",
+							"value": "C"
+						},
+						{
+							"key": "documentNumber",
+							"value": "23445322"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CUSTUMERS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"name-edit\",\n    \"email\":\"email-edit\",\n    \"password\":\"password-edit\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/api/customer/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"customer",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CUSTUMER",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"name-edit\",\n    \"email\":\"email-edit\",\n    \"password\":\"password-edit\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/api/customer/23445323",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"customer",
+						"23445323"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CUSTUMER",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentNumber\": \"23445324\",\n    \"documentType\": \"C\",\n    \"firstName\": \"MariaEdited\",\n    \"middleName\": \"JoseEdited\",\n    \"lastName\": \"LopezEdited\",\n    \"secondLastName\": \"DiazEdited\",\n    \"phoneNumber\": \"333333\",\n    \"address\": \"Avenida 45 Edited\",\n    \"cityOfResidence\": \"MedellínEdited\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/api/customer/23445324",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"customer",
+						"23445324"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
