@@ -3,6 +3,7 @@ package com.nttdata.dataprocessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nttdata.dataprocessor.controllers.CustomerController;
 import com.nttdata.dataprocessor.controllers.api.dto.request.CustomerRequest;
+import com.nttdata.dataprocessor.controllers.api.dto.response.CustomerResponse;
 import com.nttdata.dataprocessor.domain.models.entity.Customer;
 import com.nttdata.dataprocessor.services.CustomerServices;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -61,19 +63,27 @@ public class CustomerControllerTest {
 
 
   @Test
-  public void testGetCustomerByDocument() throws Exception {
-    Customer customer = new Customer("123456", "C", "John", "Robert", "Doe", "Smith", "123-456-7890", "123 Main St", "New York");
+  public void testGetValidInput() throws Exception {
+    String validDocumentType = "passport";
+    String validDocumentNumber = "123456789";
 
-    when(customerService.findByDN("23445322")).thenReturn(customer);
+    Customer validCustomer = new Customer(
+            validDocumentNumber,
+            validDocumentType,
+            "John",
+            "Doe",
+            "Smith",
+            "Johnson",
+            "123-456-7890",
+            "123 Main St",
+            "City"
+    );
 
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/customer")
-                    .param("documentType", "C")
-                    .param("documentNumber", "23445322")
-                    .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andReturn();
+    when(customerService.findByDNAndDT(validDocumentNumber, validDocumentType))
+            .thenReturn(validCustomer);
 
-    String responseBody = result.getResponse().getContentAsString();
+    ResponseEntity<CustomerResponse> responseEntity = customerController.get(validDocumentType, validDocumentNumber);
+
   }
 
   @Test
